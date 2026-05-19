@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin Routes
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,redaktur,author'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,redaktur'])->group(function () {
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
     // News management (all authenticated roles)
@@ -75,6 +75,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,redaktur
             return view('admin.web.identitas');
         })->name('web.identitas');
 
+        // Kata Jorok (word filter)
+        Route::get('/kata-jorok', function () {
+            return view('admin.kata-jorok');
+        })->name('kata-jorok');
+    });
+
+    // Admin + Redaktur routes
+    Route::middleware('role:admin,redaktur')->group(function () {
+        Route::resource('videos', Admin\VideoController::class);
+        Route::resource('galleries', Admin\GalleryController::class);
+
         // Info Lalin Admin
         Route::get('/info-lalin', function () {
             $articles = \App\Models\News::with(['category', 'author'])
@@ -89,17 +100,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,redaktur
         Route::get('/info-lalin/{news}/edit', function (\App\Models\News $news) {
             return view('admin.info-lalin.edit', compact('news'));
         })->name('info-lalin.edit');
-
-        // Kata Jorok (word filter)
-        Route::get('/kata-jorok', function () {
-            return view('admin.kata-jorok');
-        })->name('kata-jorok');
-    });
-
-    // Admin + Redaktur routes
-    Route::middleware('role:admin,redaktur')->group(function () {
-        Route::resource('videos', Admin\VideoController::class);
-        Route::resource('galleries', Admin\GalleryController::class);
     });
 });
 

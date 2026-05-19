@@ -63,9 +63,6 @@ class NewsController extends Controller
         // Filter by owner (mine)
         if ($request->filled('mine')) {
             $query->where('author_id', $request->user()->id);
-        } elseif ($request->user()->isAuthor()) {
-            // If user is author and not explicitly filtering, only show their own news
-            $query->where('author_id', $request->user()->id);
         }
 
         $news = $query->orderByDesc('created_at')->paginate(15)->withQueryString();
