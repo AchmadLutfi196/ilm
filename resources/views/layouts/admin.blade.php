@@ -103,8 +103,8 @@
 
                 {{-- Modul Web (with submenu) - Admin only --}}
                 @if(auth()->user()->isAdmin())
-                <div class="mb-1" x-data="{ open: {{ request()->routeIs('admin.web.*') || request()->routeIs('admin.pages.*') || request()->routeIs('admin.categories.*') ? 'true' : 'false' }} }">
-                    <button @click="open = !open" class="w-full flex items-center justify-between px-4 py-3 text-[12px] font-bold uppercase tracking-tight transition-all rounded-md {{ request()->routeIs('admin.web.*') || (request()->routeIs('admin.pages.*') && !request()->routeIs('admin.pages.create')) || (request()->routeIs('admin.categories.*') && !request('breaking') && !request('category')) ? 'bg-red-700 text-white shadow-lg shadow-red-900/40' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
+                <div class="mb-1" x-data="{ open: {{ (request()->routeIs('admin.web.*') && !request()->routeIs('admin.web.identitas')) || request()->routeIs('admin.pages.*') || request()->routeIs('admin.categories.*') ? 'true' : 'false' }} }">
+                    <button @click="open = !open" class="w-full flex items-center justify-between px-4 py-3 text-[12px] font-bold uppercase tracking-tight transition-all rounded-md {{ (request()->routeIs('admin.web.*') && !request()->routeIs('admin.web.identitas')) || (request()->routeIs('admin.pages.*') && !request()->routeIs('admin.pages.create')) || (request()->routeIs('admin.categories.*') && !request('breaking') && !request('category')) ? 'bg-red-700 text-white shadow-lg shadow-red-900/40' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }}">
                         <div class="flex items-center gap-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                             <span>Modul Web</span>
