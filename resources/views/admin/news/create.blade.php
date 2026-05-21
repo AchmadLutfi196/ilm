@@ -100,28 +100,6 @@
                         @enderror
                     </div>
 
-                    <div class="space-y-3 mb-6">
-                        <label class="flex items-center cursor-pointer p-3 border rounded-md hover:bg-gray-50 transition-colors">
-                            <input type="hidden" name="is_featured" value="0">
-                            <input type="checkbox" name="is_featured" value="1" {{ old('is_featured') ? 'checked' : '' }}
-                                class="rounded border-gray-300 text-red-600 shadow-sm focus:ring-red-500 w-5 h-5">
-                            <div class="ml-3">
-                                <span class="block text-sm font-medium text-gray-700">Featured</span>
-                                <span class="block text-xs text-gray-500">Tampilkan di slider utama</span>
-                            </div>
-                        </label>
-
-                        <label class="flex items-center cursor-pointer p-3 border rounded-md hover:bg-gray-50 transition-colors">
-                            <input type="hidden" name="is_breaking_news" value="0">
-                            <input type="checkbox" name="is_breaking_news" value="1" {{ old('is_breaking_news') ? 'checked' : '' }}
-                                class="rounded border-gray-300 text-red-600 shadow-sm focus:ring-red-500 w-5 h-5">
-                            <div class="ml-3">
-                                <span class="block text-sm font-medium text-gray-700">Breaking News</span>
-                                <span class="block text-xs text-gray-500">Tandai sebagai berita penting</span>
-                            </div>
-                        </label>
-                    </div>
-
                     <div class="flex flex-col gap-3">
                         <button type="submit" class="w-full py-2.5 px-4 bg-red-600 text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition-colors flex justify-center items-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>

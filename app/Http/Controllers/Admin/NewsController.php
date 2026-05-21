@@ -42,14 +42,11 @@ class NewsController extends Controller
             $query->where('status', $request->status);
         }
 
-        // Filter by breaking news
+        // Special sorting for breaking news and featured views
         if ($request->filled('breaking')) {
-            $query->where('is_breaking_news', true);
-        }
-
-        // Filter by featured
-        if ($request->filled('featured')) {
-            $query->where('is_featured', true);
+            $query->orderByDesc('is_breaking_news');
+        } elseif ($request->filled('featured')) {
+            $query->orderByDesc('is_featured');
         }
 
         // Filter by date range
@@ -226,6 +223,9 @@ class NewsController extends Controller
                 'breaking_news_until' => null,
             ]);
         } else {
+            if (News::where('is_breaking_news', true)->count() >= 5) {
+                return redirect()->back()->with('error', 'Maksimal 5 berita dapat dijadikan Breaking News. Silakan hapus status breaking news pada berita lain terlebih dahulu.');
+            }
             $news->update([
                 'is_breaking_news' => true,
                 'breaking_news_until' => now()->addHours(24),
@@ -244,6 +244,10 @@ class NewsController extends Controller
     public function toggleFeatured(News $news): RedirectResponse
     {
         Gate::authorize('toggleFeatured', News::class);
+
+        if (!$news->is_featured && News::where('is_featured', true)->count() >= 5) {
+            return redirect()->back()->with('error', 'Maksimal 5 berita dapat dijadikan Berita Pilihan. Silakan hapus status berita pilihan pada berita lain terlebih dahulu.');
+        }
 
         $news->update([
             'is_featured' => !$news->is_featured,
