@@ -13,7 +13,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#e11d48',
+                primary: 'var(--color-primary)',
                 'navy-900': '#0a192f',
                 accent: '#f59e0b',
             },

@@ -20,7 +20,7 @@
                     <a href="{{ $video->video_url }}" target="_blank" class="absolute inset-0 w-full h-full block group cursor-pointer">
                         <img src="{{ $video->display_thumbnail }}" alt="{{ $video->title }}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg">
+                            <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-white shadow-lg">
                                 <svg class="w-10 h-10 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                     <div class="absolute inset-0 flex items-center justify-center text-white flex-col gap-2">
                         <svg class="w-12 h-12 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                         <p class="text-gray-300">Thumbnail belum tersedia.</p>
-                        <a href="{{ $video->video_url }}" target="_blank" class="mt-2 px-4 py-2 bg-red-600 text-white rounded-full text-sm hover:bg-red-700 transition-colors">Tonton Videonya Langsung</a>
+                        <a href="{{ $video->video_url }}" target="_blank" class="mt-2 px-4 py-2 bg-primary text-white rounded-full text-sm hover:opacity-90 transition-opacity">Tonton Videonya Langsung</a>
                     </div>
                 @endif
             </div>

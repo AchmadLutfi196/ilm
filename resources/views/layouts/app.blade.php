@@ -30,6 +30,10 @@
     {{-- Scripts --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- Dynamic Theme Color from Admin --}}
+    @php $themeColor = \App\Models\WebSetting::get('theme_color', '#dc2626'); @endphp
+    <style>:root { --color-primary: {{ $themeColor }}; }</style>
+
     @stack('styles')
 </head>
 <body class="font-sans antialiased">
@@ -54,6 +58,9 @@
         {{-- Footer --}}
         @include('layouts.partials.footer')
     </div>
+
+    {{-- Popup (once per session) --}}
+    <x-popup />
 
     @stack('scripts')
 </body>

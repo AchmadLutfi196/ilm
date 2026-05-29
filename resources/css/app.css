@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default primary color — overridden dynamically by app.blade.php from admin settings */
+:root {
+    --color-primary: #dc2626;
+}
+
 @layer base {
     html, body {
         @apply bg-gray-50 text-slate-900 font-sans antialiased;

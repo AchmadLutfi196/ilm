@@ -21,7 +21,7 @@
                 </span>
                 <div class="flex flex-col gap-1">
                     @if($item->type === 'video')
-                        <span class="text-[9px] font-bold uppercase tracking-wider text-white bg-red-500 px-1.5 py-0.5 rounded self-start">VIDEO</span>
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-white bg-primary px-1.5 py-0.5 rounded self-start">VIDEO</span>
                     @elseif($item->type === 'gallery')
                         <span class="text-[9px] font-bold uppercase tracking-wider text-white bg-emerald-600 px-1.5 py-0.5 rounded self-start">POTRET</span>
                     @else

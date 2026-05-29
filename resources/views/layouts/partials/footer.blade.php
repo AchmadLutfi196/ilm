@@ -1,5 +1,11 @@
 @php
     $footerAds = app(\App\Services\CacheService::class)->getActiveAds('footer');
+    $webLogoPath    = \App\Models\WebSetting::get('logo_path');
+    $webLogoUrl     = $webLogoPath ? \Illuminate\Support\Facades\Storage::url($webLogoPath) : asset('LogoBaruILM.png');
+    $socialFacebook = \App\Models\WebSetting::get('social_facebook', 'https://www.facebook.com/InfoLantasMojokerto');
+    $socialInstagram= \App\Models\WebSetting::get('social_instagram', 'https://www.instagram.com/infolantasmojokerto');
+    $socialYoutube  = \App\Models\WebSetting::get('social_youtube', 'https://www.youtube.com/@InfoLantasMojokerto');
+    $socialTiktok   = \App\Models\WebSetting::get('social_tiktok', 'https://www.tiktok.com/@info.lantas.mojokerto');
 @endphp
 
 @if($footerAds->count() > 0)
@@ -16,26 +22,26 @@
             {{-- Logo & Description --}}
             <div class="flex flex-col gap-6">
                 <a href="{{ route('home') }}" class="flex items-center gap-2">
-                    <img loading="lazy" src="{{ asset('LogoBaruILM.png') }}" alt="Logo" class="w-12 h-12 object-contain" onerror="this.style.display='none'">
+                    <img loading="lazy" src="{{ $webLogoUrl }}" alt="Logo" class="w-12 h-12 object-contain" onerror="this.style.display='none'">
                     <div class="flex flex-col -space-y-1">
                         <span class="font-black text-lg leading-none text-[#1a1a1a] tracking-tighter uppercase">INFO LANTAS</span>
-                        <span class="font-black text-lg leading-none text-red-600 tracking-tighter uppercase">MOJOKERTO</span>
+                        <span class="font-black text-lg leading-none text-primary tracking-tighter uppercase">MOJOKERTO</span>
                     </div>
                 </a>
                 <p class="text-gray-500 text-sm leading-relaxed">
                     Info Lantas Mojokerto adalah portal berita dan informasi lalu lintas terpercaya di wilayah Mojokerto Raya. Menyajikan kabar terkini, update lantas, dan potensi daerah.
                 </p>
                 <div class="flex items-center gap-4">
-                    <a href="https://www.facebook.com/InfoLantasMojokerto" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
+                    <a href="{{ $socialFacebook }}" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/infolantasmojokerto" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
+                    <a href="{{ $socialInstagram }}" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     </a>
-                    <a href="https://www.youtube.com/@InfoLantasMojokerto" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
+                    <a href="{{ $socialYoutube }}" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
                     </a>
-                    <a href="https://www.tiktok.com/@info.lantas.mojokerto" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
+                    <a href="{{ $socialTiktok }}" target="_blank" rel="noopener noreferrer" class="p-2 border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                     </a>
                 </div>
@@ -70,7 +76,7 @@
                         </div>
                         <div class="flex flex-col gap-1">
                             @if($item->type === 'video')
-                                <span class="text-[9px] font-bold uppercase tracking-wider text-white bg-red-500 px-1.5 py-0.5 rounded self-start">VIDEO</span>
+                                <span class="text-[9px] font-bold uppercase tracking-wider text-white bg-primary px-1.5 py-0.5 rounded self-start">VIDEO</span>
                             @elseif($item->type === 'gallery')
                                 <span class="text-[9px] font-bold uppercase tracking-wider text-white bg-emerald-600 px-1.5 py-0.5 rounded self-start">POTRET</span>
                             @else

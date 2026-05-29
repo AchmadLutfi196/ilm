@@ -17,7 +17,11 @@
             {{-- Logo --}}
             <div class="p-6 border-b border-gray-800">
                 <div class="flex items-center gap-3">
-                    <img loading="lazy" src="{{ asset('LogoBaruILM.png') }}" alt="Logo" class="w-10 h-10 object-contain" onerror="this.style.display='none'">
+                    @php
+                        $adminLogoPath = \App\Models\WebSetting::get('logo_path');
+                        $adminLogoUrl  = $adminLogoPath ? \Illuminate\Support\Facades\Storage::url($adminLogoPath) : asset('LogoBaruILM.png');
+                    @endphp
+                    <img loading="lazy" src="{{ $adminLogoUrl }}" alt="Logo" class="w-10 h-10 object-contain" onerror="this.style.display='none'">
                     <div>
                         <h2 class="text-white font-black text-[11px] uppercase tracking-tighter leading-tight">Info Lantas</h2>
                         <p class="text-[9px] font-bold text-red-600 uppercase tracking-widest leading-none">Mojokerto</p>
