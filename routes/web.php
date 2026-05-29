@@ -90,6 +90,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,redaktur
         Route::resource('videos', Admin\VideoController::class);
         Route::resource('galleries', Admin\GalleryController::class);
         Route::resource('users', Admin\UserController::class);
+        Route::resource('editorial-teams', Admin\EditorialTeamController::class)->except(['show']);
 
         // Info Lalin Admin
         Route::resource('info-lalin', Admin\InfoLalinController::class)->except(['show']);
