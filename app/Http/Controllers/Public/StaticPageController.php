@@ -29,9 +29,27 @@ class StaticPageController extends Controller
      */
     public function redaksi(): View
     {
-        $page = StaticPage::where('slug', 'redaksi')->firstOrFail();
-        $seo = $this->seoService->generateForPage($page->title, 'Susunan redaksi ' . config('news_portal.site.name'));
+        $teams = \App\Models\EditorialTeam::orderBy('order_column')->get();
 
-        return view('public.static.redaksi', compact('page', 'seo'));
+        // Group by roles in the exact order requested
+        $roleOrder = [
+            'Pemimpin Redaksi / Penanggung Jawab',
+            'Wakil Pemimpin Redaksi',
+            'Redaktur Pelaksana',
+            'Tim Broadcaster & Gate Keeper',
+            'Jurnalis / Reporter Lapangan',
+            'Spesialis Media Sosial / Content Creator',
+            'Tim Produksi Audio Visual & Desain'
+        ];
+
+        // Sort the grouped teams according to $roleOrder
+        $groupedTeams = $teams->groupBy('role')->sortBy(function ($item, $key) use ($roleOrder) {
+            $index = array_search($key, $roleOrder);
+            return $index === false ? 999 : $index;
+        });
+
+        $seo = $this->seoService->generateForPage('Susunan Redaksi', 'Susunan redaksi ' . config('news_portal.site.name'));
+
+        return view('public.static.redaksi', compact('groupedTeams', 'seo'));
     }
 }
