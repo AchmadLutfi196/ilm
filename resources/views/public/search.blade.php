@@ -34,7 +34,7 @@
                         </select>
                     </div>
                     <input type="hidden" name="q" value="{{ request('q') }}">
-                    <button type="submit" class="bg-red-600 text-white px-8 py-2 rounded-sm text-xs font-bold hover:bg-red-700 transition-colors shadow-sm">
+                    <button type="submit" class="bg-primary text-white px-8 py-2 rounded-sm text-xs font-bold hover:opacity-90 transition-opacity shadow-sm">
                         CARI
                     </button>
                 </form>
@@ -44,7 +44,7 @@
             <form action="{{ route('news.search') }}" method="GET" class="mb-8">
                 <div class="flex gap-2">
                     <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari berita berdasarkan kata kunci..." class="flex-1 bg-white border border-gray-200 text-gray-700 text-sm px-4 py-2.5 rounded outline-none focus:border-primary transition-colors">
-                    <button type="submit" class="bg-red-600 text-white px-6 py-2.5 rounded text-xs font-bold hover:bg-red-700 transition-colors shadow-sm">
+                    <button type="submit" class="bg-primary text-white px-6 py-2.5 rounded text-xs font-bold hover:opacity-90 transition-opacity shadow-sm">
                         CARI
                     </button>
                 </div>
@@ -75,7 +75,7 @@
                         {{ $featuredNews->title }}
                     </h2>
                     <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-500">
-                        <span class="text-red-500">{{ $featuredNews->category->name ?? 'BERITA' }}</span>
+                        <span class="text-primary">{{ $featuredNews->category->name ?? 'BERITA' }}</span>
                         <span>-</span>
                         <span>{{ $featuredNews->published_at?->translatedFormat('l, j M Y | H:i') }} WIB</span>
                     </div>
@@ -95,7 +95,7 @@
                         @endif
                     </div>
                     <div class="flex-1 flex flex-col justify-center">
-                        <div class="text-[10px] font-black text-red-500 uppercase tracking-widest mb-2">
+                        <div class="text-[10px] font-black text-primary uppercase tracking-widest mb-2">
                             {{ $article->category->name ?? 'BERITA' }}
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 leading-[1.3] group-hover:text-primary transition-colors mb-3 tracking-tight">

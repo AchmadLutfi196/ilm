@@ -8,15 +8,15 @@
             {{-- Category Header --}}
             <div class="flex items-center gap-4 mb-8">
                 <div class="flex-1 flex flex-col gap-[2px]">
-                    <div class="h-[3px] bg-red-600 w-full"></div>
-                    <div class="h-[3px] bg-red-600 w-full"></div>
+                    <div class="h-[3px] bg-primary w-full"></div>
+                    <div class="h-[3px] bg-primary w-full"></div>
                 </div>
-                <h1 class="text-2xl font-black text-red-700 tracking-tighter px-4 whitespace-nowrap uppercase">
+                <h1 class="text-2xl font-black text-primary tracking-tighter px-4 whitespace-nowrap uppercase">
                     {{ strtoupper($category->name) }}
                 </h1>
                 <div class="flex-1 flex flex-col gap-[2px]">
-                    <div class="h-[3px] bg-red-600 w-full"></div>
-                    <div class="h-[3px] bg-red-600 w-full"></div>
+                    <div class="h-[3px] bg-primary w-full"></div>
+                    <div class="h-[3px] bg-primary w-full"></div>
                 </div>
             </div>
 
@@ -30,13 +30,13 @@
                         @endif
                     </div>
                     <div class="flex-1 flex flex-col">
-                        <h3 class="text-[22px] font-black text-gray-800 leading-[1.2] mb-3 group-hover:text-red-600 transition-colors tracking-tight">
+                        <h3 class="text-[22px] font-black text-gray-800 leading-[1.2] mb-3 group-hover:text-primary transition-colors tracking-tight">
                             {{ $article->title }}
                         </h3>
                         <div class="flex items-center gap-4 text-[11px] text-gray-400 mb-4 font-bold tracking-wider">
                             <span class="flex items-center gap-1.5 uppercase bg-gray-50 px-2 py-0.5 rounded italic">🕒 {{ $article->published_at?->translatedFormat('d M Y (H:i)') }}</span>
                             <span class="flex items-center gap-1.5 uppercase bg-gray-50 px-2 py-0.5 rounded italic">💬 {{ $article->views }}</span>
-                            <span class="text-red-500 font-black hover:text-red-700 transition-colors uppercase border-b-2 border-red-100 hover:border-red-600">Selengkapnya</span>
+                            <span class="text-primary font-black hover:opacity-80 transition-opacity uppercase border-b-2 border-primary/20 hover:border-primary">Selengkapnya</span>
                         </div>
                         <p class="text-[14px] text-gray-500 line-clamp-3 leading-relaxed font-medium">
                             {{ $article->excerpt }}

@@ -5,15 +5,15 @@
     <div class="flex flex-col items-center mb-12">
         <div class="flex items-center gap-4 mb-8 w-full">
             <div class="flex-1 flex flex-col gap-[2px]">
-                <div class="h-[3px] bg-red-600 w-full"></div>
-                <div class="h-[3px] bg-red-600 w-full"></div>
+                <div class="h-[3px] bg-primary w-full"></div>
+                <div class="h-[3px] bg-primary w-full"></div>
             </div>
-            <h1 class="text-3xl font-black text-red-700 tracking-tighter px-6 whitespace-nowrap uppercase">
+            <h1 class="text-3xl font-black text-primary tracking-tighter px-6 whitespace-nowrap uppercase">
                 Tentang Kami
             </h1>
             <div class="flex-1 flex flex-col gap-[2px]">
-                <div class="h-[3px] bg-red-600 w-full"></div>
-                <div class="h-[3px] bg-red-600 w-full"></div>
+                <div class="h-[3px] bg-primary w-full"></div>
+                <div class="h-[3px] bg-primary w-full"></div>
             </div>
         </div>
 
@@ -41,15 +41,15 @@
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                 <div class="p-6 bg-red-50 rounded-xl border border-red-100">
-                    <h3 class="font-bold text-red-700 mb-2">Akurasi</h3>
+                    <h3 class="font-bold text-primary mb-2">Akurasi</h3>
                     <p class="text-sm">Setiap berita melalui proses verifikasi ketat sebelum sampai ke tangan pembaca.</p>
                 </div>
                 <div class="p-6 bg-red-50 rounded-xl border border-red-100">
-                    <h3 class="font-bold text-red-700 mb-2">Interaktivitas</h3>
+                    <h3 class="font-bold text-primary mb-2">Interaktivitas</h3>
                     <p class="text-sm">Kami membangun jembatan komunikasi dua arah antara penyedia layanan dan masyarakat.</p>
                 </div>
                 <div class="p-6 bg-red-50 rounded-xl border border-red-100">
-                    <h3 class="font-bold text-red-700 mb-2">Integritas</h3>
+                    <h3 class="font-bold text-primary mb-2">Integritas</h3>
                     <p class="text-sm">Menjaga independensi jurnalisme demi kepentingan publik di atas segalanya.</p>
                 </div>
             </div>
@@ -74,7 +74,7 @@
 
                 {{-- Level 2: Pemimpin Redaksi --}}
                 <div class="relative mb-24 z-10">
-                    <div class="bg-red-600 text-white p-5 rounded-xl shadow-[0_10px_20px_-5px_rgba(220,38,38,0.3)] w-80 text-center border-b-4 border-red-800 transition-all hover:-translate-y-1">
+                    <div class="bg-primary text-white p-5 rounded-xl shadow-lg w-80 text-center border-b-4 border-black/20 transition-all hover:-translate-y-1">
                         <h3 class="text-[10px] font-black uppercase tracking-[0.3em] mb-1 opacity-70">Pemimpin Redaksi</h3>
                         <p class="text-2xl font-black">Siti Aminah, M.I.Kom</p>
                     </div>
@@ -150,7 +150,7 @@
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach(['Fajar Ramadhan', 'Gita Permata', 'Hadi Wijaya', 'Salsabila Putri'] as $name)
                         <div class="bg-white p-4 rounded-xl border border-gray-100 text-center shadow-sm transition-all hover:shadow-md hover:border-red-200 group">
-                            <p class="text-xs font-black text-gray-600 group-hover:text-red-700 uppercase tracking-tighter">{{ $name }}</p>
+                            <p class="text-xs font-black text-gray-600 group-hover:text-primary uppercase tracking-tighter">{{ $name }}</p>
                             <p class="text-[8px] font-bold text-gray-300 uppercase tracking-widest mt-1">Koresponden</p>
                         </div>
                         @endforeach
@@ -174,7 +174,7 @@
                 <p class="text-gray-400 text-sm">Punya informasi penting atau ingin berkolaborasi?</p>
             </div>
             <div class="flex flex-col gap-2">
-                <a href="mailto:{{ config('news_portal.site.contact_email', 'redaksi@infolantasmojokerto.com') }}" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all text-center">
+                <a href="mailto:{{ config('news_portal.site.contact_email', 'redaksi@infolantasmojokerto.com') }}" class="px-6 py-3 bg-primary hover:opacity-90 text-white font-bold rounded-full transition-all text-center">
                     Email Redaksi
                 </a>
                 <span class="text-xs text-gray-500 text-center">Jl. Raya Mojokerto No. 123, Jawa Timur</span>

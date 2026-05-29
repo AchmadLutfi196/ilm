@@ -70,18 +70,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin,redaktur
         Route::resource('pages', Admin\StaticPageController::class);
 
         // Modul Web
-        Route::get('/web/logo', function () {
-            return view('admin.web.logo');
-        })->name('web.logo');
-        Route::get('/web/popup', function () {
-            return view('admin.web.popup');
-        })->name('web.popup');
-        Route::get('/web/tema', function () {
-            return view('admin.web.tema');
-        })->name('web.tema');
-        Route::get('/web/identitas', function () {
-            return view('admin.web.identitas');
-        })->name('web.identitas');
+        Route::get('/web/logo',      [Admin\WebSettingController::class, 'logo'])->name('web.logo');
+        Route::post('/web/logo',     [Admin\WebSettingController::class, 'saveLogo'])->name('web.logo.save');
+        Route::get('/web/popup',     [Admin\WebSettingController::class, 'popup'])->name('web.popup');
+        Route::post('/web/popup',    [Admin\WebSettingController::class, 'savePopup'])->name('web.popup.save');
+        Route::get('/web/tema',      [Admin\WebSettingController::class, 'tema'])->name('web.tema');
+        Route::post('/web/tema',     [Admin\WebSettingController::class, 'saveTema'])->name('web.tema.save');
+        Route::get('/web/identitas', [Admin\WebSettingController::class, 'identitas'])->name('web.identitas');
+        Route::post('/web/identitas',[Admin\WebSettingController::class, 'saveIdentitas'])->name('web.identitas.save');
 
         // Kata Jorok (word filter)
         Route::get('/kata-jorok', function () {
