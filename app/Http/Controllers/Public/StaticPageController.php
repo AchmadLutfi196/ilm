@@ -33,13 +33,13 @@ class StaticPageController extends Controller
 
         // Group by roles in the exact order requested
         $roleOrder = [
-            'Pemimpin Redaksi / Penanggung Jawab',
+            'Pemimpin Redaksi',
             'Wakil Pemimpin Redaksi',
             'Redaktur Pelaksana',
-            'Tim Broadcaster & Gate Keeper',
-            'Jurnalis / Reporter Lapangan',
-            'Spesialis Media Sosial / Content Creator',
-            'Tim Produksi Audio Visual & Desain'
+            'Redaktur',
+            'Jurnalis / Reporter',
+            'Content Creator / Media Sosial',
+            'Tim Produksi Audio Visual & Desain',
         ];
 
         // Sort the grouped teams according to $roleOrder

@@ -80,6 +80,36 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
             border: 1px solid rgba(229, 231, 235, 0.5);
         }
+        .password-wrapper {
+            position: relative;
+        }
+        .password-wrapper .input-field {
+            padding-right: 3rem;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.375rem;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+        .toggle-password:hover {
+            color: #4b5563;
+            background: #f3f4f6;
+        }
+        .toggle-password:focus {
+            outline: 2px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+            outline-offset: 1px;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased text-gray-900">
@@ -189,9 +219,24 @@
                                 </a>
                             @endif
                         </div>
-                        <input id="password" type="password" name="password" required autocomplete="current-password"
-                            class="input-field @error('password') !border-red-500 @enderror"
-                            placeholder="••••••••">
+                        <div class="password-wrapper">
+                            <input id="password" type="password" name="password" required autocomplete="current-password"
+                                class="input-field @error('password') !border-red-500 @enderror"
+                                placeholder="••••••••">
+                            <button type="button" id="toggle-password" class="toggle-password" aria-label="Tampilkan/sembunyikan kata sandi" onclick="togglePassword()">
+                                {{-- Eye icon (shown when password is hidden) --}}
+                                <svg id="icon-eye" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                {{-- Eye-off icon (shown when password is visible) --}}
+                                <svg id="icon-eye-off" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"></path>
+                                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"></path>
+                                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                                </svg>
+                            </button>
+                        </div>
                         @error('password')
                             <p class="mt-2 text-sm font-medium text-red-600 flex items-center gap-1">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -237,5 +282,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    function togglePassword() {
+        const input = document.getElementById('password');
+        const iconEye = document.getElementById('icon-eye');
+        const iconEyeOff = document.getElementById('icon-eye-off');
+        const btn = document.getElementById('toggle-password');
+
+        if (input.type === 'password') {
+            input.type = 'text';
+            iconEye.classList.add('hidden');
+            iconEyeOff.classList.remove('hidden');
+            btn.setAttribute('aria-label', 'Sembunyikan kata sandi');
+        } else {
+            input.type = 'password';
+            iconEye.classList.remove('hidden');
+            iconEyeOff.classList.add('hidden');
+            btn.setAttribute('aria-label', 'Tampilkan kata sandi');
+        }
+    }
+</script>
 </body>
 </html>
