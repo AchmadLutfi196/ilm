@@ -23,12 +23,7 @@
             <a href="{{ route('gallery.index') }}" class="text-[13px] font-bold tracking-wider transition-colors {{ request()->routeIs('gallery.*') ? 'text-primary' : 'text-gray-900 hover:text-primary' }}">POTRET KELANA KOTA</a>
             <a href="{{ route('video.index') }}" class="text-[13px] font-bold tracking-wider transition-colors {{ request()->routeIs('video.*') ? 'text-primary' : 'text-gray-900 hover:text-primary' }}">VIDEO</a>
             <a href="{{ route('infolalin') }}" class="text-[13px] font-bold tracking-wider transition-colors {{ request()->routeIs('infolalin') ? 'text-primary' : 'text-gray-900 hover:text-primary' }}">INFO LALIN</a>
-            {{-- Search Button --}}
-            <form action="{{ route('news.search') }}" method="GET" class="relative">
-                <button type="submit" class="text-gray-900 hover:text-primary transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </button>
-            </form>
+
         </div>
 
         {{-- Mobile Hamburger --}}

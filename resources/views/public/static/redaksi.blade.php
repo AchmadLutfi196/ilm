@@ -43,24 +43,35 @@
                         </div>
 
                         {{-- Members Grid --}}
-                        <div class="flex flex-wrap justify-center items-start gap-x-10 gap-y-12">
+                        <div class="flex flex-wrap justify-center items-start gap-x-8 gap-y-10">
                             @foreach($teams as $team)
-                                <div class="flex flex-col items-center justify-start text-center group w-48 md:w-56">
-                                    <div class="w-40 h-56 md:w-48 md:h-64 shrink-0 rounded-2xl overflow-hidden bg-white shadow-lg border-4 border-white mb-5 relative">
+                                @php
+                                    // Inisial nama untuk fallback avatar
+                                    $words    = explode(' ', trim($team->name));
+                                    $initials = strtoupper(substr($words[0], 0, 1) . (isset($words[1]) ? substr($words[1], 0, 1) : ''));
+                                @endphp
+                                <div class="flex flex-col items-center text-center group w-32 md:w-36">
+                                    {{-- Foto bulat --}}
+                                    <div class="w-24 h-24 md:w-28 md:h-28 shrink-0 rounded-full overflow-hidden bg-gray-200 shadow-md ring-4 ring-white mb-3 relative transition-transform duration-300 group-hover:scale-105">
                                         @if($team->photo)
-                                            <img loading="lazy" src="{{ Storage::url($team->photo) }}" alt="{{ $team->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                            <img loading="lazy"
+                                                 src="{{ Storage::url($team->photo) }}"
+                                                 alt="{{ $team->name }}"
+                                                 class="w-full h-full object-cover object-top">
                                         @else
-                                            <div class="w-full h-full bg-gray-100 flex items-center justify-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-300"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                            {{-- Fallback: lingkaran dengan inisial --}}
+                                            <div class="w-full h-full flex items-center justify-center bg-primary/10">
+                                                <span class="text-2xl font-black text-primary select-none">{{ $initials }}</span>
                                             </div>
                                         @endif
-                                        <div class="absolute inset-0 border-4 border-primary/0 group-hover:border-primary/20 rounded-2xl transition-colors duration-300 pointer-events-none"></div>
                                     </div>
-                                    
-                                    <h3 class="text-base md:text-lg font-black text-gray-900 group-hover:text-primary transition-colors leading-tight mb-0">{{ $team->name }}</h3>
-                                    
+
+                                    {{-- Nama --}}
+                                    <h3 class="text-sm font-black text-gray-900 group-hover:text-primary transition-colors leading-snug">{{ $team->name }}</h3>
+
+                                    {{-- Keterangan (opsional) --}}
                                     @if($team->description)
-                                        <span class="inline-block px-3 py-1 bg-gray-200 text-gray-600 text-[10px] font-bold uppercase tracking-wider rounded-full mt-1">
+                                        <span class="inline-block px-2 py-0.5 bg-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider rounded-full mt-1">
                                             {{ $team->description }}
                                         </span>
                                     @endif

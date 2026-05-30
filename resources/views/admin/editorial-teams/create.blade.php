@@ -59,17 +59,22 @@
                     <select name="role" id="role" required
                         class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm font-medium rounded-xl focus:ring-red-500 focus:border-red-500 block px-4 py-3 transition-colors">
                         <option value="">-- Pilih Jabatan --</option>
-                        <option value="Pemimpin Redaksi / Penanggung Jawab" {{ old('role') == 'Pemimpin Redaksi / Penanggung Jawab' ? 'selected' : '' }}>Pemimpin Redaksi / Penanggung Jawab</option>
-                        <option value="Wakil Pemimpin Redaksi" {{ old('role') == 'Wakil Pemimpin Redaksi' ? 'selected' : '' }}>Wakil Pemimpin Redaksi</option>
-                        <option value="Redaktur Pelaksana" {{ old('role') == 'Redaktur Pelaksana' ? 'selected' : '' }}>Redaktur Pelaksana</option>
-                        <option value="Tim Broadcaster & Gate Keeper" {{ old('role') == 'Tim Broadcaster & Gate Keeper' ? 'selected' : '' }}>Tim Broadcaster & Gate Keeper</option>
-                        <option value="Jurnalis / Reporter Lapangan" {{ old('role') == 'Jurnalis / Reporter Lapangan' ? 'selected' : '' }}>Jurnalis / Reporter Lapangan</option>
-                        <option value="Spesialis Media Sosial / Content Creator" {{ old('role') == 'Spesialis Media Sosial / Content Creator' ? 'selected' : '' }}>Spesialis Media Sosial / Content Creator</option>
-                        <option value="Tim Produksi Audio Visual & Desain" {{ old('role') == 'Tim Produksi Audio Visual & Desain' ? 'selected' : '' }}>Tim Produksi Audio Visual & Desain</option>
+                        @foreach($roles as $order => $roleOption)
+                            @php
+                                $isSingle = in_array($roleOption, $singleRoles);
+                                $isTaken  = in_array($roleOption, $takenSingleRoles);
+                            @endphp
+                            <option value="{{ $roleOption }}"
+                                {{ old('role') == $roleOption ? 'selected' : '' }}
+                                {{ $isTaken ? 'disabled' : '' }}>
+                                {{ $roleOption }}{{ $isTaken ? ' (sudah terisi)' : '' }}
+                            </option>
+                        @endforeach
                     </select>
                     @error('role')
                         <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
                     @enderror
+                    <p class="text-[10px] font-medium text-gray-400 mt-1">Jabatan Pemimpin, Wakil, dan Redaktur Pelaksana hanya boleh 1 orang.</p>
                 </div>
 
                 <div>
@@ -82,16 +87,7 @@
                     @enderror
                 </div>
 
-                <div>
-                    <label for="order_column" class="block text-[11px] font-black text-gray-700 uppercase tracking-widest mb-2">Urutan Tampil <span class="text-red-500">*</span></label>
-                    <input type="number" name="order_column" id="order_column" value="{{ old('order_column', 0) }}" required
-                        class="w-full md:w-32 bg-gray-50 border border-gray-200 text-gray-900 text-sm font-medium rounded-xl focus:ring-red-500 focus:border-red-500 block px-4 py-3 transition-colors"
-                        placeholder="0">
-                    <p class="text-[10px] font-medium text-gray-400 mt-1">Angka lebih kecil tampil lebih dulu.</p>
-                    @error('order_column')
-                        <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
-                    @enderror
-                </div>
+                {{-- Urutan otomatis berdasarkan jabatan, tidak perlu diisi --}}
             </div>
         </div>
 

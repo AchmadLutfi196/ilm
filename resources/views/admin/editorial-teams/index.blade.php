@@ -33,7 +33,6 @@
         <table class="w-full text-left">
             <thead>
                 <tr class="bg-gray-50 border-b border-gray-100">
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-500 uppercase tracking-widest w-16 text-center">Urutan</th>
                     <th class="px-6 py-4 text-[10px] font-black text-gray-500 uppercase tracking-widest">Foto</th>
                     <th class="px-6 py-4 text-[10px] font-black text-gray-500 uppercase tracking-widest">Nama & Jabatan</th>
                     <th class="px-6 py-4 text-[10px] font-black text-gray-500 uppercase tracking-widest">Keterangan</th>
@@ -43,11 +42,6 @@
             <tbody class="divide-y divide-gray-50">
                 @forelse($teams as $team)
                 <tr class="hover:bg-gray-50/50 transition-colors group">
-                    <td class="px-6 py-4">
-                        <div class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-xs font-black text-gray-600 mx-auto">
-                            {{ $team->order_column }}
-                        </div>
-                    </td>
                     <td class="px-6 py-4">
                         <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-100 border-2 border-white shadow-sm flex items-center justify-center">
                             @if($team->photo)
@@ -81,7 +75,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-12 text-center">
+                    <td colspan="4" class="px-6 py-12 text-center">
                         <div class="flex flex-col items-center justify-center text-gray-400">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-4 opacity-50"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             <p class="text-sm font-bold mb-1 text-gray-500">Belum ada data anggota redaksi</p>
